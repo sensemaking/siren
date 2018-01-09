@@ -40,6 +40,13 @@
             "items": {
                 "$ref": "#/definitions/Link"
             }
+        },
+        "types": {
+            "description": "A collection custom types available to actions.",
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Type"
+            }
         }
     },
     "definitions": {
@@ -190,7 +197,34 @@
                         "color",
                         "checkbox",
                         "radio",
-                        "file"
+                        "file",
+                        "array"
+                    ]
+                },
+                "array-item-type": {
+                    "description": "If the 'type' is array, this is the type of item in the array.",
+                    "type": "string",
+                    "enum": [
+                        "hidden",
+                        "text",
+                        "search",
+                        "tel",
+                        "url",
+                        "email",
+                        "password",
+                        "datetime",
+                        "date",
+                        "month",
+                        "week",
+                        "time",
+                        "datetime-local",
+                        "number",
+                        "range",
+                        "color",
+                        "checkbox",
+                        "radio",
+                        "file",
+                        "array"
                     ]
                 },
                 "title": {
@@ -366,6 +400,27 @@
                     ]
                 }
             ]
+        },
+        "Type": {
+            "description": "Types provide custom types for use in actions",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "The name of the type that can be referenced from actions",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "Descriptive text for the type",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "A collection of fields",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Field"
+                    }
+                }
+            }
         }
     }
 }

@@ -49,7 +49,8 @@ The media type for JSON Siren is `application/vnd.siren+json`.
       "fields": [
         { "name": "orderNumber", "type": "hidden", "value": "42" },
         { "name": "productCode", "type": "text" },
-        { "name": "quantity", "type": "number" }
+        { "name": "quantity", "type": "number" },
+        { "name": "products", "type": "array", "array-item-type": "product" }
       ]
     }
   ],
@@ -57,6 +58,16 @@ The media type for JSON Siren is `application/vnd.siren+json`.
     { "rel": [ "self" ], "href": "http://api.x.io/orders/42" },
     { "rel": [ "previous" ], "href": "http://api.x.io/orders/41" },
     { "rel": [ "next" ], "href": "http://api.x.io/orders/43" }
+  ],
+  "types": [
+    { 
+      "name": "product", 
+      "title": "A Product" , 
+      "fields": [
+        { "name": "code", "type": "number" },
+        { "name": "description", "type": "text" }
+      ] 
+    }
   ]
 }
 ```
@@ -223,7 +234,15 @@ The input type of the field. This may include any of the following [input types]
 `number`, `range`, `color`, `checkbox`,
 `radio`, `file` 
 
+This can also be the name of a custom type defined in the `Types` section or `array`, in which case the `array-item-type` should also be set.
+
 When missing, the default value is `text`.  Serialization of these fields will depend on the value of the action's `type` attribute. See [`type`](#type) under Actions, above. Optional.
+
+#### array-item-type
+
+When the [`type`](#type) is set to `array`, this should contain the type of object contained in the array.  The possible values are the same as the [`type`](#type) field.
+
+When missing, the default value is `text`.
 
 #### value
 
@@ -232,6 +251,22 @@ A value assigned to the field.  Optional.
 #### title
 
 Textual annotation of a field.  Clients may use this as a label.  Optional.
+
+### Types
+
+Types represent extended options for action types.  They allow for the ability to specify arrays and complex types for an action field.
+
+#### name
+
+The name of this type.  This name can be referenced from the [`type`](#type) or [`array-item-type`](#aray-item-type) of a field, either in the actions section or another type.
+
+#### title
+
+The text description of the type.
+
+#### fields
+
+Exactly the same structure as [`Fields`](#Fields) for actions.
 
 ## Usage Considerations
 
