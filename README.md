@@ -50,7 +50,7 @@ The media type for JSON Siren is `application/vnd.siren+json`.
         { "name": "orderNumber", "type": "hidden", "value": "42" },
         { "name": "productCode", "type": "text" },
         { "name": "quantity", "type": "number" },
-        { "name": "products", "type": "array", "array-item-type": "product" }
+        { "name": "products", "type": "array", "item-type": "product" }
       ]
     }
   ],
